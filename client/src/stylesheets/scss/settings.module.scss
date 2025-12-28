@@ -1,0 +1,87 @@
+.main {
+    display: flex;
+}
+
+.settingBar {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    padding: 12px 5px 12px 5px;
+    gap: 7px;
+}
+
+.settingBar button {
+    height: 2.3rem;
+    border-radius: 7px;
+    border: none;
+    text-align: left;
+    text-indent: 12px;
+    background: transparent;
+    font-weight: 530;
+    font-size: 17px;
+    color: gray;
+    align-items: center;
+    display: flex;
+    padding-left: 5px;
+}
+
+.settingBar button:hover {
+    background: rgb(59, 59, 59);
+    color: white;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 1rem 3rem;
+}
+
+.settings input[type=text] {
+    height: 2.4rem;
+    width: 19rem;
+    border: 1px solid gray;
+    outline: none;
+    text-indent: 10px;
+    border-radius: 6px;
+    background: transparent;
+}
+
+.userInfo {
+    display: flex;
+    background: rgb(35, 35, 35);
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.profilePicture {
+    border-radius: 100%;
+}
+
+.userNames {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.subInfo {
+    display: grid;
+    gap: 20px;
+}
+
+.logoutButton {
+    align-items: center;
+    display: flex;
+    border: 0.4px solid red !important;
+    color: red !important;
+    transition: 0.5s ease-in-out;
+}
+
+.logoutButton:hover {
+    color: white !important;
+    background: red !important;
+}

@@ -1,0 +1,126 @@
+.main {
+    display: flex;
+    background: black;
+    min-height: 100vh;
+    justify-content: center;
+    display: flex;
+}
+
+.leftContainer {
+    height: 100vh;
+    width: 30rem;
+    padding: 10px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 100%;
+    grid-template-rows: 9rem;
+    align-items: center;
+}
+
+.loginForm {
+    height: 20rem;
+    width: fit-content;
+    width: 100%;
+    align-content: center;
+    display: grid;
+    gap: 30px
+}
+
+.loginForm form {
+    width: 100%;
+    display: grid;
+    gap: 22px;
+    align-items: center;
+}
+
+.loginForm input {
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: 17px;
+    text-indent: 6px;
+}
+
+.loginButton {
+    width: 100%;
+    height: 3.5rem;
+    background: limegreen;
+    border-radius: 8px;
+    border: none;
+    font-size: 24px;
+    font-weight: 550;
+    margin: 3.5rem 0;
+}
+
+.headerLogin {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    display: flex;
+    height: 3rem;
+    border-radius: 7px;
+    border-bottom: 1px solid gray;
+}
+
+.formButton {
+    width: fit-content;
+    background: transparent;
+    font-size: 17px;
+    font-weight: 300;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 6px;
+    transition: 1s ease-in-out;
+}
+
+.formButton:hover {
+    border: 1px solid gray;
+}
+
+.status {
+    background: linear-gradient(14deg, red, rgb(178, 0, 0), rgb(93, 0, 0));
+    padding: 10px;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out 0.5s all;
+    border-radius: 12px;
+}
+
+.details {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+}
+
+.status:hover {
+    padding: 9px 20px;
+    width: fit-content;
+    .details {
+        animation: showError 2s 1s forwards;
+    }
+    
+    .icon {
+        display: none;
+    }
+}
+
+@keyframes showError {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    100% {
+        width: 9rem;
+        opacity: 1;
+        visibility: visible;
+    }
+}

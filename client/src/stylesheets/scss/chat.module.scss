@@ -1,0 +1,553 @@
+.main {
+    display: flex;
+    width: 95%;
+}
+
+#chat {
+    height: 92vh;
+    overflow-y: scroll;
+    padding: 2rem 2rem 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.centerContainer {
+    display: grid;
+    width: 100%;
+}
+
+.messageItems {
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    background: rgb(10, 10, 10);
+    justify-content: center;
+}
+
+.messageBar {
+    display: flex;
+    background: rgb(42, 42, 42);
+    height: 70%;
+    width: 53%;
+    border-radius: 12px;
+    padding: 6px;
+}
+
+.messageBar textarea {
+    background: none;
+    color: white;
+    outline: none;
+    border: none;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 450;
+    resize: none;
+    align-content: center;
+    padding: 7px;
+}
+
+.sendButton {
+    width: 10%;
+    background: blue;
+    border-radius: 10px;
+    border: none;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    display: grid;
+}
+
+.messageContent {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.messageContent img {
+    border-radius: 100%;
+}
+
+.messageContent:hover {
+    background: rgb(49, 49, 49);
+}
+
+.userMessage {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.messageReference {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: gray;
+}
+
+.messageReference img {
+    border-radius: 100%;
+    border: 1px solid silver;
+}
+
+.serverIcon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.serverIconPNG {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    font-size: 17px;
+    font-weight: 600;
+    border: 1px solid rgb(93, 93, 93);
+    background: #161616;
+    position: relative;
+}
+
+.serverName {
+    opacity: 0;
+    visibility: hidden;
+    background: rgb(35, 35, 35);
+    padding: 7px 9px;
+    border-radius: 6px;
+    font-weight: 600;
+    position: absolute;
+    left: 4.8rem;
+}
+
+.serverIcon:hover {
+    .serverName {
+        animation: sidebar_open 1s forwards;
+    }
+}
+
+.newServer {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newServer {
+    &:hover {
+        border: 1px solid gray;
+        svg {
+            animation: svg_rotate 1s infinite;
+        }
+    }
+}
+
+@keyframes svg_rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+.sidebar {
+    width: 5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px 20px 0px;
+    gap: 13px;
+    align-items: center;
+}
+
+@keyframes sidebar_open {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-6);
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+.userList {
+    padding: 23px 5px 12px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.userListUser {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 20rem;
+    border-radius: 12px;
+    height: 4rem;
+    padding: 0 10px 0 10px;
+}
+
+.userListUser:hover {
+    background: #161616;
+}
+
+.userListUser img {
+    border-radius: 100%;
+}
+
+.userStatus {
+    color: gray;
+    font-size: 14px;
+}
+
+.si {
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 3%;
+    right: 0%;
+    border: 3px solid black;
+}
+
+.offline {
+    background: gray !important;
+}
+
+.idle {
+    background: rgb(255, 187, 0);
+}
+
+.online {
+    background: lime;
+}
+
+.toggleButton {
+    display: flex;
+    background: rgb(30, 30, 30);
+    padding: 2px;
+    width: 13rem;
+    height: 2.7rem;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.toggleButton button {
+    width: 100%;
+    border: 0;
+    border-radius: 10;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 510;
+}
+
+.toggleButton button.selected {
+    background: purple;
+    border: 1px solid rgb(158, 158, 158);
+}
+
+.exploreScreen {
+    width: 50rem;
+    height: 30rem;
+    border: 1px solid gray;
+    background: rgb(25, 25, 25);
+    box-shadow: 5px 5px 11px inset rgb(49, 49, 49);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 19vh;
+    left: 25vw;
+}
+
+.exploreScreen input[type="text"] {
+    border: none;
+    height: 3rem;
+    width: 17rem;
+    text-indent: 12px;
+    font-size: 15px;
+    border-radius: 10px;
+    outline: none;
+}
+
+.exploreScreen input[type="text"]:focus {
+    border: 1px solid gray;
+}
+
+.modelLongButton {
+    border: 0.5px solid rgb(73, 73, 73);
+    border-radius: 15px;
+    padding: 3px 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 4.7rem;
+    width: 38rem;
+}
+
+.modelLongButton p {
+    color: gray;
+}
+
+.serverHubHeader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.serverHubContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    height: 50%;
+}
+
+.serverHubFooter {
+
+}
+
+.closeButton {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    border: 0;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.closeButton:hover {
+    color: gray;
+}
+
+.settingsButton {
+    height: 1.8rem;
+    width: 87%;
+    border-radius: 7px;
+    background: rgb(25, 25, 25);
+    font-weight: 502;
+    border: 1px solid rgb(64, 64, 64);
+}
+
+.userPanel {
+    width: 37rem;
+    background: #161616;
+    margin: 12px;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.userPanel img {
+    border: 3px solid gray;
+    border-radius: 100%;
+}
+
+.userPanel span {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    border-radius: 7px;
+    height: 3rem;
+}
+
+.userRibbon {
+    display: flex;
+    background-color: pink;
+    height: 2.3rem;
+    justify-content: right;
+    gap: 5px;
+    border-radius: 5px;
+}
+
+.userRibbon button {
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    color: white;
+    background: transparent;
+    border-bottom: 2px solid purple;
+    gap: 7px;
+}
+
+.userQC {
+    padding: 10px;
+}
+
+.bioPanel {
+    padding: 10px;
+    border-radius: 10px;
+    resize: none;
+    outline: none;
+    caret-color: transparent;
+    background: black;
+}
+
+.panelUserStatus {
+    transition: 1s ease-in-out;
+    align-items: center;
+    display: flex;
+    background: transparent;
+    border: 1px solid gray;
+    gap: 6px;
+    padding: 5px 13px;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.panelUserStatus span {
+    transition: 1s ease-in-out;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+}
+
+.userButtons {
+    display: flex;
+    gap: 12px;
+}
+
+.userButtons button {
+    border: 2px solid blue;
+    background: transparent;
+    padding: 7px 20px;
+    border-radius: 10px;
+}
+
+.messageStateItems {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    color: white;
+    height: 100%;
+    gap: 9px;
+    align-items: center;
+}
+
+.messageContent:hover {
+    .messageStateItems {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.messageStateItems button {
+    height: 2.6rem;
+    width: 2.6rem;
+    border-radius: 10px;
+    border: 0;
+    background: rgb(0, 102, 255);
+    font-size: 15px;
+    font-weight: 510;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageStateItems button:hover {
+    border: 1px solid silver;
+}
+
+.messageIndicator {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 80px;
+    left: 24%;
+    background: #282828;
+    width: 13rem;
+    padding: 8px;
+    border-radius: 14px;
+    animation: indicatorAppear 1s forwards;
+}
+
+.messageIndicator button {
+    width: 22px;
+    height: 22px;
+    padding: 3px;
+    border-radius: 100%;
+    border: none;
+}
+
+@keyframes indicatorAppear {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(5);
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+.fileUpload {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    font-size: 30px;
+    padding: 17px;
+    margin: 0 12px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        width: 100%;
+    }
+
+    #chat {
+        padding: 2rem 1rem 5rem 1rem;
+        height: 83vh;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .userList {
+        display: none;
+    }
+
+    .messageBar {
+        width: 80%;
+        height: 85%;
+    }
+
+    .sendButton {
+        width: 30%;
+        color: white;
+    }
+
+    .messageStateItems {
+        display: none;
+    }
+}
