@@ -1,6 +1,6 @@
 'use client'
 
-import { construct_path, globals } from "../../typescript/env";
+import { construct_path } from "../../typescript/env";
 import { useEffect, useState } from "react"
 import { get_token } from "../../typescript/user";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ export default function LogoutPage() {
             const em = new eventManager();
             const token = get_token();
 
-            const res = await fetch(construct_path("logout"), {
+            const res = await fetch(construct_path("api/logout"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

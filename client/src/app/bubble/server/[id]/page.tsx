@@ -39,7 +39,7 @@ export default function Chat({ params }: { params: Promise<{ id: string }> }) {
 
     useEffect(() => {
         async function load_chat() {
-            const res = await fetch(construct_path("messages_get"), {
+            const res = await fetch(construct_path("api/messages_get"), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -16,7 +16,7 @@ function LoginForm({ setForm }: { setForm: Dispatch<SetStateAction<string>> }) {
         e.preventDefault(); // prevent page reload
 
         try {
-            const res = await fetch(construct_path("login"), {
+            const res = await fetch(construct_path("api/login"), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
@@ -92,7 +92,7 @@ function CreationForm({ setForm }: {setForm: Dispatch<SetStateAction<string>>}) 
         e.preventDefault();
 
         try {
-            const res = await fetch(construct_path("create"), {
+            const res = await fetch(construct_path("api/create"), {
                 method: "POST",
                 headers: {"Content-Type": "application/json" },
                 body: JSON.stringify({username, password, displayName}),

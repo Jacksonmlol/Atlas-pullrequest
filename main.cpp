@@ -810,7 +810,7 @@ int main(int argc, char* argv[]) {
     // Login endpoint
     // Within your main function, replacing the current routes["/login"] definition:
 
-    routes["/login"] = [](const http::request<http::string_body>& req) {
+    routes["/api/login"] = [](const http::request<http::string_body>& req) {
         http::response<http::string_body> res{http::status::ok, req.version()};
         res.set(http::field::server, "Boost.Beast");
         res.set(http::field::content_type, "application/json");
@@ -884,7 +884,7 @@ int main(int argc, char* argv[]) {
         return res;
     };
 
-    routes["/logout"] = [](const http::request<http::string_body>& req) {
+    routes["/api/logout"] = [](const http::request<http::string_body>& req) {
         http::response<http::string_body> res{http::status::unauthorized, req.version()};
         json response_body;
         auto body = json::parse(req.body());
@@ -907,7 +907,7 @@ int main(int argc, char* argv[]) {
         return res;
     };
 
-    routes["/messages_get"] = [](const http::request<http::string_body>& req) {
+    routes["/api/messages_get"] = [](const http::request<http::string_body>& req) {
         http::response<http::string_body> res{http::status::unauthorized, req.version()};
         json response_body;
 
@@ -945,7 +945,7 @@ int main(int argc, char* argv[]) {
         return res;
     };
 
-    routes["/create"] = [](const http::request<http::string_body>& req) {
+    routes["/api/create"] = [](const http::request<http::string_body>& req) {
         http::response<http::string_body> res{http::status::unauthorized, req.version()};
         json response_body;
 
