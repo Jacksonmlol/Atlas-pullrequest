@@ -17,7 +17,7 @@ export default function SettingsPage() {
         username: "",
         customStatus: "",
         picture: "",
-        status: "online",
+        status: "offline",
         bio: ""
     });
     const [selectedTab, setSelectedTab] = useState(0);

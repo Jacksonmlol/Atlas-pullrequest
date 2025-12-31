@@ -691,7 +691,6 @@ void handle_websocket(tcp::socket socket, const http::request<http::string_body>
     }
 }
 
-
 //------------------------------------------------------------
 // Handle a single session (HTTP or WS)
 //------------------------------------------------------------
@@ -785,8 +784,6 @@ int main(int argc, char* argv[]) {
     if (argc > 1 && std::string(argv[1]) == "--notify") {
         ping_server();
     }
-
-    std::cout << secret << "\n";
 
     std::map<std::string, HttpRoute> routes;
 
