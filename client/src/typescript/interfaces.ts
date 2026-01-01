@@ -28,3 +28,12 @@ export interface messageFormat {
     messageRef: number;
     link?: string;
 };
+
+export interface loginResponse {
+    response: {
+        status: number;
+        message: string;
+        token: string;
+    };
+    error?: string;
+};

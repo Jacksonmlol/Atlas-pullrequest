@@ -5,45 +5,8 @@ import { useRouter } from "next/navigation";
 import styles from "../stylesheets/css/login.module.css";
 import { construct_path } from "../typescript/env";
 import { login_status } from "../typescript/user";
-
-interface LoginResponse {
-    response: {
-        status: number;
-        message: string;
-        token: string;
-    };
-    error?: string;
-}
-
-function FloatingInput({
-    type = "text",
-    value,
-    label,
-    onChange,
-}: {
-    type?: string;
-    value: string;
-    label: string;
-    onChange: (v: string) => void;
-}) {
-    const [focused, setFocused] = useState(false);
-
-    return (
-        <div className={`${styles.inputGroup} ${focused || value ? styles.active : ""}`}>
-            <label className={styles.label}>{label}</label>
-            <input
-                type={type}
-                value={value}
-                required
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
-                autoComplete={type === "password" ? "current-password" : "username"}
-                onChange={(e) => onChange(e.target.value)}
-                className={styles.inputField}
-            />
-        </div>
-    );
-}
+import { loginResponse } from "../typescript/interfaces";
+import { FloatingInput, Tab, Tabs } from "./components";
 
 function LoginForm({ setForm }: { setForm: Dispatch<SetStateAction<string>> }) {
     const router = useRouter();
@@ -64,7 +27,7 @@ function LoginForm({ setForm }: { setForm: Dispatch<SetStateAction<string>> }) {
                 body: JSON.stringify({ username, password }),
             });
 
-            const data: LoginResponse = await res.json();
+            const data: loginResponse = await res.json();
 
             if (!res.ok) {
                 setStatus(data.error ?? "Invalid username or password.");
@@ -122,8 +85,11 @@ function CreationForm({ setForm }: { setForm: Dispatch<SetStateAction<string>> }
     const [username, setUsername] = useState("");
     const [displayName, setDisplayName] = useState("");
     const [password, setPassword] = useState("");
+    const [bio, setBio] = useState<string>("");
+    const [customStatus, setCustomStatus] = useState<string>("");
     const [status, setStatus] = useState("");
     const [loading, setLoading] = useState(false);
+    const [tab, setTab] = useState<number>(0);
 
     async function createAccount(e: React.FormEvent) {
         e.preventDefault();
@@ -134,8 +100,9 @@ function CreationForm({ setForm }: { setForm: Dispatch<SetStateAction<string>> }
             const res = await fetch(construct_path("api/create"), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password, displayName }),
+                body: JSON.stringify({ username, password, displayName, customStatus, bio }),
             });
+            const data = await res.json();
 
             if (!res.ok) {
                 setStatus("Account creation failed.");
@@ -165,9 +132,19 @@ function CreationForm({ setForm }: { setForm: Dispatch<SetStateAction<string>> }
             <div className={styles.loginForm}>
                 <h1>Create Account</h1>
                 <form onSubmit={createAccount} className={styles.stack}>
-                    <FloatingInput label="Username" value={username} onChange={setUsername} />
-                    <FloatingInput label="Display Name" value={displayName} onChange={setDisplayName} />
-                    <FloatingInput type="password" label="Password" value={password} onChange={setPassword} />
+                    <Tabs selectedTab={tab}>
+                        <Tab>
+                            <FloatingInput label="Username" value={username} onChange={setUsername} />
+                            <FloatingInput label="Display Name" value={displayName} onChange={setDisplayName} />
+                            <FloatingInput type="Password" label="Password" value={password} onChange={setPassword} />
+                            <FloatingInput label="Custom Status" value={customStatus} onChange={setCustomStatus} />
+                            <textarea rows={10} cols={15} placeholder="Enter something about yourself" className={styles.aboutPanel} onChange={(e) => setBio(e.target.value)}></textarea>
+                        </Tab>
+
+                        <Tab>
+                            <h1></h1>
+                        </Tab>
+                    </Tabs>
 
                     <button type="submit" className={styles.loginButton} disabled={loading}>
                         {loading ? "Creating..." : "Create Account"}

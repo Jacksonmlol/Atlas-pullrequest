@@ -350,7 +350,7 @@ export default function Chat({ params }: { params: Promise<{ id: string }> }) {
                                     {chatContent.filter(refMsg => refMsg.id == content.messageRef).map((refMsgData, index) => (
                                         <div key={index} className={styles.messageReference}>
                                             <canvas ref={(el) => {if (el) canvasRef.current[refMsgData.id] = el}} width={40} height={20}></canvas>
-                                            <Image src={`http://${globals.url_string.subdomain}:80${refMsgData["picture"]}`} alt="" width={20} height={20} unoptimized quality={1}/>
+                                            <Image src={`${globals.url_string.scheme}://${globals.url_string.subdomain}${refMsgData["picture"]}`} alt="" width={20} height={20} unoptimized quality={1}/>
                                             <p>{refMsgData.displayName}</p>
                                             <p> | {refMsgData.content}</p>
                                         </div>
@@ -360,7 +360,7 @@ export default function Chat({ params }: { params: Promise<{ id: string }> }) {
 
                             <div className={styles.messageContent}>
                                 <div className={styles.userMessage}>
-                                    <Image src={`http://${globals.url_string.subdomain}:80${content["picture"]}`} alt="" width={50} height={50} unoptimized quality={1}/>
+                                    <Image src={`${globals.url_string.scheme}://${globals.url_string.subdomain}${content["picture"]}`} alt="" width={50} height={50} unoptimized quality={1}/>
                                     <div>
                                         <div style={{ display: "flex", gap: "5px"}}>
                                             <p>{content["displayName"]}</p>
@@ -459,7 +459,7 @@ export default function Chat({ params }: { params: Promise<{ id: string }> }) {
                 {userList.online.map((user, index) => (
                     <div key={index} className={styles.userListUser} onClick={() => open_profile(user, setPreview, setShowPreview)}>
                         <div style={{position: "relative"}}>
-                            <Image src={`http://${globals.url_string.subdomain}:80${user["picture"]}`} alt="" width={50} height={50} unoptimized quality={1}/>
+                            <Image src={`${globals.url_string.scheme}://${globals.url_string.subdomain}${user["picture"]}`} alt="" width={50} height={50} unoptimized quality={1}/>
                             <span className={`${styles.si} ${styles[user["status"]]}`}></span>
                         </div>
                         <div>
@@ -472,7 +472,7 @@ export default function Chat({ params }: { params: Promise<{ id: string }> }) {
                 {userList.offline.map((user, index) => (
                     <div key={index} className={styles.userListUser} onClick={() => open_profile(user, setPreview, setShowPreview)}>
                         <div style={{position: "relative"}}>
-                            <Image src={`http://${globals.url_string.subdomain}:80${user["picture"]}`} alt="" width={50} height={50} unoptimized quality={1}/>
+                            <Image src={`${globals.url_string.scheme}://${globals.url_string.subdomain}${user["picture"]}`} alt="" width={50} height={50} unoptimized quality={1}/>
                             <span className={`${styles.si} ${styles[user["status"]]}`}></span>
                         </div>
                         <div>

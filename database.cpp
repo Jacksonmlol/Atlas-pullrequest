@@ -76,10 +76,17 @@ bool user_exists(const std::string& username) {
     }
 }
 
-void create_account(const std::string& username, const std::string& displayName, const std::string& password) {
+void create_account(
+    const std::string& username,
+    const std::string& displayName,
+    const std::string& password,
+    const std::string& custom_status,
+    const std::string& bio
+) {
     boost::uuids::uuid id = boost::uuids::random_generator()();
     std::string user_id = to_string(id);
     std::string passwrd_hash = hashPassword(password);
+    std::string appearance_status = "offline";
 
     try {
         Database db = connect_db();
@@ -90,7 +97,17 @@ void create_account(const std::string& username, const std::string& displayName,
         }
 
         pqxx::work txn(conn);
-        pqxx::result r = txn.exec("INSERT INTO users (username, displayname, password, user_id) VALUES (" + txn.quote(username) + ", " + txn.quote(displayName) + ", " + txn.quote(passwrd_hash) + ", " + txn.quote(user_id) + ")");
+        pqxx::result r = txn.exec(
+            "INSERT INTO users (username, displayname, password, user_id, appearance_status, custom_status, bio) VALUES (" 
+                + txn.quote(username) + ", " 
+                + txn.quote(displayName) + ", " 
+                + txn.quote(passwrd_hash) + ", " 
+                + txn.quote(user_id) + ", "
+                + txn.quote(appearance_status) + ", "
+                + txn.quote(custom_status) + ", "
+                + txn.quote(bio) +
+            ")"
+        );
 
         txn.commit();
     } catch (std::exception &e) {

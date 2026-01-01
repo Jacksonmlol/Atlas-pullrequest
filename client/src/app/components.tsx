@@ -1,6 +1,6 @@
 import { Profile } from "../typescript/interfaces";
-import styles from "../stylesheets/css/chat.module.css";
-import React, { Dispatch, ReactNode, SetStateAction, useContext } from "react";
+import styles from "../stylesheets/css/components.module.css";
+import React, { Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 import { ProfilePanel } from "./bubble/layout";
 
 export function UserPanel({ user }: { user: Profile }) {
@@ -166,4 +166,34 @@ export function Tabs({
 
 export function Tab({ children }: { children: ReactNode }) {
     return <div>{children}</div>;
+}
+
+export function FloatingInput({
+    type = "text",
+    value,
+    label,
+    onChange,
+}: {
+    type?: string;
+    value: string;
+    label: string;
+    onChange: (v: string) => void;
+}) {
+    const [focused, setFocused] = useState(false);
+
+    return (
+        <div className={`${styles.inputGroup} ${focused || value ? styles.active : ""}`}>
+            <label className={styles.label}>{label}</label>
+            <input
+                type={type}
+                value={value}
+                required
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                autoComplete={type === "password" ? "current-password" : "username"}
+                onChange={(e) => onChange(e.target.value)}
+                className={styles.inputField}
+            />
+        </div>
+    );
 }

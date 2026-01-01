@@ -713,7 +713,8 @@ void do_session(tcp::socket socket,
 }
 
 json get_user(const std::string& username);
-void create_account(const std::string& username, const std::string& displayName, const std::string& password);
+
+void create_account(const std::string& username, const std::string& displayName, const std::string& password, const std::string& custom_status, const std::string& bio);
 bool login_user(std::string& username, std::string& password);
 json get_messages(const std::string serverID);
 void update_account(const std::string& username, const std::string& displayname, const std::string& profile_picture, const std::string& custom_status, const std::string& bio, const std::string& UUID);
@@ -956,8 +957,12 @@ int main(int argc, char* argv[]) {
             std::string username = body.value("username", "");
             std::string password = body.value("password", "");
             std::string displayName = body.value("displayName", "");
+            std::string bio = body.value("bio", "");
+            std::string custom_status = body.value("customStatus", "");
     
-            create_account(username, displayName, password);
+            create_account(username, displayName, password, custom_status, bio);
+
+            res.result(http::status::ok);
     
             response_body["status"] = "created";
             response_body["username"] = username;
